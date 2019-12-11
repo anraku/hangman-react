@@ -15,8 +15,8 @@ const AnswerString: React.FC<AnswerStringProps> = props => {
     <>
       <p>answer is {answer}</p>
       <AnswerArea>
-        {answer.split('').map(char => 
-          <Panel char={char} />
+        {answer.split('').map((char, index) => 
+          <Panel key={index} char={char} />
         )}
       </AnswerArea>
     </>
