@@ -1,0 +1,31 @@
+import React, { useState, useEffect } from 'react'
+import HangmanImage from './HangmanImage'
+import img1 from '../images/1.jpg'
+import img2 from '../images/2.jpg'
+import img3 from '../images/3.jpg'
+import img4 from '../images/4.jpg'
+import img5 from '../images/5.jpg'
+import img6 from '../images/6.jpg'
+import AnswerString from './AnswerString'
+import { ENGLISH_WORDS } from '../utils/words'
+import KeyBoard from './KeyBoard'
+
+const Hangman: React.FC = () => {
+  const images = [img1,img2,img3,img4,img5,img6]
+  const [answer, setAnswer] = useState("")
+
+  useEffect(() => {
+    const random = Math.floor(Math.random() * ENGLISH_WORDS.length)
+    setAnswer(ENGLISH_WORDS[random])
+  }, [])
+
+  return (
+    <>
+      <HangmanImage images={images} />
+      <AnswerString answer={answer} />
+      <KeyBoard />
+    </>
+  )
+}
+
+export default Hangman
