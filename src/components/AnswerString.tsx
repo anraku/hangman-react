@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react'
-import App from '../contexts/App'
+import React from 'react'
 import styled from 'styled-components'
-import Panel from './Panel'
 
 interface AnswerStringProps {
   random: string
   answer: string[]
-  setAnswer: React.Dispatch<string[]>
 }
 
 const Container = styled.div`
@@ -24,13 +21,12 @@ const Word = styled.p`
 
 const AnswerString: React.FC<AnswerStringProps> = props => {
   const { random, answer } = props
-  console.log(answer.length)
 
   return (
     <>
       <p>answer is {random}</p>
         {answer.map((char, index) => 
-          <Container key={index}>
+        <Container key={index}>
           <Word>{char}</Word>
         </Container>
         )}

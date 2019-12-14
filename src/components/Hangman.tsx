@@ -18,7 +18,7 @@ const Hangman: React.FC = () => {
   return (
     <KeyContext.Provider value={{ key, setKey }}>
       <HangmanImage images={images}/>
-      <AnswerString random={random} answer={answer} setAnswer={setAnswer}/>
+      <AnswerString random={random} answer={answer} />
       <KeyBoard />
     </KeyContext.Provider>
   )
