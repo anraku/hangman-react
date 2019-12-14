@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import KeyContext from '../contexts/App'
 import styled, { css } from 'styled-components'
 
 const Word = styled.p`
@@ -19,6 +20,7 @@ const initialState: ButtonState = {
 
 const Key: React.FC<KeyProps> = ({ word }) => {
   const [state, setState] = useState(initialState)
+  const { key, setKey }  = useContext(KeyContext)
   const Container = styled.div`
     cursor: pointer;
     width: 40px;
@@ -35,13 +37,13 @@ const Key: React.FC<KeyProps> = ({ word }) => {
       background-color: #cccccc;
     `}
   `
-  const handleClick = (e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
-    e.preventDefault()
+  const handleClick = (value: string) => {
     setState({clickable: false})
+    setKey(value)
   }
 
   return (
-    <Container onClick={handleClick}>
+    <Container onClick={() => handleClick(word)}>
       <Word>{word}</Word>
     </Container>
   )

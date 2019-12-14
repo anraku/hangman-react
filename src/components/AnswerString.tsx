@@ -1,24 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import App from '../contexts/App'
 import styled from 'styled-components'
 import Panel from './Panel'
 
 interface AnswerStringProps {
-  answer: string
+  random: string
+  answer: string[]
+  setAnswer: React.Dispatch<string[]>
 }
 
-const AnswerArea = styled.div`
+const Container = styled.div`
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-bottom: solid 2px black;
+`
+
+const Word = styled.p`
+  margin-top: 0px;
+  margin-bottom: 10px;
 `
 
 const AnswerString: React.FC<AnswerStringProps> = props => {
-  const { answer } = props
+  const { random, answer } = props
+  console.log(answer.length)
+
   return (
     <>
-      <p>answer is {answer}</p>
-      <AnswerArea>
-        {answer.split('').map((char, index) => 
-          <Panel key={index} char={char} />
+      <p>answer is {random}</p>
+        {answer.map((char, index) => 
+          <Container key={index}>
+          <Word>{char}</Word>
+        </Container>
         )}
-      </AnswerArea>
     </>
   )
 }

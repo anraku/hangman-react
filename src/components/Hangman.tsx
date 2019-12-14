@@ -6,25 +6,21 @@ import img3 from '../images/3.jpg'
 import img4 from '../images/4.jpg'
 import img5 from '../images/5.jpg'
 import img6 from '../images/6.jpg'
+import KeyContext from '../contexts/App'
 import AnswerString from './AnswerString'
-import { ENGLISH_WORDS } from '../utils/words'
 import KeyBoard from './KeyBoard'
+import { useAppData } from '../hooks/App'
 
 const Hangman: React.FC = () => {
-  const images = [img1,img2,img3,img4,img5,img6]
-  const [answer, setAnswer] = useState("")
-
-  useEffect(() => {
-    const random = Math.floor(Math.random() * ENGLISH_WORDS.length)
-    setAnswer(ENGLISH_WORDS[random])
-  }, [])
+  const images = [img1, img2, img3, img4, img5, img6]
+  const {key, setKey, random, answer, setAnswer}= useAppData()
 
   return (
-    <>
-      <HangmanImage images={images} />
-      <AnswerString answer={answer} />
+    <KeyContext.Provider value={{ key, setKey }}>
+      <HangmanImage images={images}/>
+      <AnswerString random={random} answer={answer} setAnswer={setAnswer}/>
       <KeyBoard />
-    </>
+    </KeyContext.Provider>
   )
 }
 

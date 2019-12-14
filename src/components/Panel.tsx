@@ -19,6 +19,7 @@ const Word = styled.p`
 `
 
 const Panel: React.FC<PanelProps> = ({ char }) => {
+  console.log("rerender")
   return (
     <Container>
       <Word>{char}</Word>
